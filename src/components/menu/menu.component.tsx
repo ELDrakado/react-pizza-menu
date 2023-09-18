@@ -7,20 +7,24 @@ function Menu() {
   return (
     <main className='menu'>
       <h2>Our menu</h2>
-      <div className='pizzas'>
-        {pizzaData.map((pizza: PizzaInterface) => {
-          const { id, name, ingredients, photoName, price } = pizza;
-          return (
-            <Pizza
-              key={id}
-              name={name}
-              ingredients={ingredients}
-              photoName={photoName}
-              price={price}
-            />
-          );
-        })}
-      </div>
+      {pizzaData.length > 0 ? (
+        <ul className='pizzas'>
+          {pizzaData.map((pizza: PizzaInterface) => {
+            return (
+              <Pizza
+                key={pizza.id}
+                name={pizza.name}
+                ingredients={pizza.ingredients}
+                photoName={pizza.photoName}
+                price={pizza.price}
+                soldOut={pizza.soldOut}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later.</p>
+      )}
     </main>
   );
 }
